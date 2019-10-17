@@ -360,3 +360,74 @@ Date:   Wed Oct 16 19:21:44 2019 +0800
 diff --git a/README.txt b/README.txt
 new file mode 100644
 index 0000000..e69de29
+
+HP@LAPTOP-660E9LSI MINGW64 ~/rhymes (master)
+$ git fetch bob
+remote: Enumerating objects: 7, done.
+remote: Counting objects: 100% (7/7), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 4 (delta 2), reused 4 (delta 2), pack-reused 0
+Unpacking objects: 100% (4/4), done.
+From https://github.com/rizuki96/rhymes
+ * [new branch]      hickory-dickory -> bob/hickory-dickory
+ * [new branch]      master          -> bob/master
+
+HP@LAPTOP-660E9LSI MINGW64 ~/rhymes (master)
+$ git branch -a
+* master
+  remotes/alice/master
+  remotes/bob/hickory-dickory
+  remotes/bob/master
+
+HP@LAPTOP-660E9LSI MINGW64 ~/rhymes (master)
+$ git checkout -b hickory-dickory bob/hickory-dickory
+Switched to a new branch 'hickory-dickory'
+Branch 'hickory-dickory' set up to track remote branch 'hickory-dickory' from 'bob'.
+
+HP@LAPTOP-660E9LSI MINGW64 ~/rhymes (hickory-dickory)
+$ git diff master hickory-dickory
+diff --git a/rhymes-master/hickory-dickory-dock.txt b/rhymes-master/hickory-dickory-dock.txt
+index a337f4c..e0bffb5 100644
+--- a/rhymes-master/hickory-dickory-dock.txt
++++ b/rhymes-master/hickory-dickory-dock.txt
+@@ -3,3 +3,5 @@ The mouse ran up the clock.
+ The clock struck one,
+ The mouse ran down!
+ Hickory, dickory, dock.
++
++Bob changes this.
+
+HP@LAPTOP-660E9LSI MINGW64 ~/rhymes (hickory-dickory)
+$ git log -1 -p
+commit 18cc6ab4c8a9bc3afcbdc555f88c94ecbaf1b336 (HEAD -> hickory-dickory, bob/hickory-dickory)
+Author: Rizky <rizukifirumanshaa96@gmail.com>
+Date:   Wed Oct 16 23:23:44 2019 +0700
+
+    Added hickory-dickory-dock.txt
+
+diff --git a/rhymes-master/hickory-dickory-dock.txt b/rhymes-master/hickory-dickory-dock.txt
+index a337f4c..e0bffb5 100644
+--- a/rhymes-master/hickory-dickory-dock.txt
++++ b/rhymes-master/hickory-dickory-dock.txt
+@@ -3,3 +3,5 @@ The mouse ran up the clock.
+ The clock struck one,
+ The mouse ran down!
+ Hickory, dickory, dock.
++
++Bob changes this.
+
+HP@LAPTOP-660E9LSI MINGW64 ~/rhymes (hickory-dickory)
+$ git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'alice/master'.
+
+HP@LAPTOP-660E9LSI MINGW64 ~/rhymes (master)
+$ git merge hickory-dickory
+Updating fbf8ddf..18cc6ab
+Fast-forward
+ rhymes-master/hickory-dickory-dock.txt | 2 ++
+ 1 file changed, 2 insertions(+)
+
+HP@LAPTOP-660E9LSI MINGW64 ~/rhymes (master)
+$ git branch -D hickory-dickory
+Deleted branch hickory-dickory (was 18cc6ab).
